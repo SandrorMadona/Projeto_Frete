@@ -6,6 +6,7 @@ import com.faturamentofrete.frete.freteDTO.FreteRequestDTO;
 import com.faturamentofrete.frete.freteDTO.FreteResponseDTO;
 import com.faturamentofrete.frete.repository.CustoFixoRepository;
 import com.faturamentofrete.frete.repository.FreteRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,16 +14,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FreteService {
 
-    @Autowired
-    private FreteRepository freteRepository;
-    private CustoFixoRepository custoFixoRepository;
+    /* @RequiredArdsConstructor faz a injeção da dependencia e injeta na variavel nas classes que possuem o "final"*/
+    private final FreteRepository freteRepository;
+
+    private final CustoFixoRepository custoFixoRepository;
 
     // Novo metodo que criamos para o Controller usar
     public List<FreteResponseDTO> listarTodos() {
 
-        Sort sort = Sort.by("data").descending()
+        Sort sort = Sort.by("dataServico").descending()
                 .and(Sort.by("id").ascending());
         return freteRepository.findAll(sort)
                 .stream()
