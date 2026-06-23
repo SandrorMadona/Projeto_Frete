@@ -3,6 +3,7 @@ package com.faturamentofrete.frete.controller;
 
 import com.faturamentofrete.frete.entity.CustoFixo;
 import com.faturamentofrete.frete.entity.Frete;
+import com.faturamentofrete.frete.entity.TabelaPreco;
 import com.faturamentofrete.frete.freteDTO.FreteRequestDTO;
 import com.faturamentofrete.frete.freteDTO.FreteResponseDTO;
 import com.faturamentofrete.frete.service.FreteService;
@@ -50,4 +51,20 @@ public class FreteController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/preco")
+    private List<TabelaPreco> listarPrecos(){
+        return  freteService.listarPrecos();
+    }
+
+    @PostMapping("/preco")
+    public ResponseEntity<TabelaPreco> salvarPreco(@RequestBody TabelaPreco novoPreco){
+        try {
+            TabelaPreco precoSalvo = freteService.salvarPreco(novoPreco);
+            return  ResponseEntity.ok(precoSalvo);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }

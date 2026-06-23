@@ -1,17 +1,22 @@
 package com.faturamentofrete.frete.freteDTO;
 
 import com.faturamentofrete.frete.entity.Frete;
+import com.faturamentofrete.frete.enums.Turno;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public record FreteResponseDTO(
         Long id,
         LocalDate dataServico,
-        String turnos,
+        List<Turno> turnos,
         BigDecimal faturamento,
         BigDecimal gasto,
-        boolean isDobra
+        boolean isDobra,
+        boolean sdd
 ) {
         public FreteResponseDTO(Frete frete){
             this(
@@ -20,7 +25,8 @@ public record FreteResponseDTO(
                     frete.getTurnos(),
                     frete.getFaturamento(),
                     frete.getGasto(),
-                    frete.isDobra()
+                    frete.isDobra(),
+                    frete.isSdd()
             );
 
         }
