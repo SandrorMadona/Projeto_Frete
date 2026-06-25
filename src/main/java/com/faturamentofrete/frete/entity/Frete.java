@@ -29,8 +29,8 @@ public class Frete {
     //mudei de string para enum para que nao tenha como ser adicionado coisas aleatorias, como [e um projeto para mim acredito que seja melhor assim, e o @Enumerated(EnumType,STRING) é para que no banco seja salvo o texto e nao os numeros de sequencia do enum
     @ElementCollection // esta anotacao pede para o JPA criar uma tabela auxiliar no db
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "tb_frete_turnos")
-    private List<Turno> turnos;
+    @CollectionTable(name = "tb_frete_turnos_realizados")
+    private List<TurnoRealizado> turnoRealizado;
 
     //@Column(nullable = false) indica que a coluna dataServico nao pode ser vazia
     @Column(nullable = false)
@@ -41,20 +41,12 @@ public class Frete {
 
     private boolean isDobra;
 
-    private boolean sdd;
 
     public Frete(FreteRequestDTO novoFrete) {
         this.dataServico = novoFrete.dataServico();
-        this.turnos = novoFrete.turnos();
-        this.faturamento = novoFrete.faturamento();
+        this.turnoRealizado = novoFrete.turnoRealizado();
         this.gasto = novoFrete.gasto();
-        this.isDobra = novoFrete.turnos() != null && novoFrete.turnos().size() > 1; // em vez de eu utilizar if na service, esta linha sozinha esta fazendo a verificação de se tem mais de um item na lista e isso faz com que o isDobra seja false ou true
-        this.sdd = novoFrete.sdd();
+        this.isDobra = novoFrete.turnoRealizado() != null && novoFrete.turnoRealizado().size() > 1; // em vez de eu utilizar if na service, esta linha sozinha esta fazendo a verificação de se tem mais de um item na lista e isso faz com que o isDobra seja false ou true
     }
-
-
-
-
-
 
 }
