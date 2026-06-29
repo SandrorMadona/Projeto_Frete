@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/fretes")
@@ -37,34 +38,5 @@ public class FreteController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/fixo")
-    private List<CustoFixo> listarCustos(){
-        return freteService.listarCustos();
-    }
-
-    @PostMapping("/fixo")
-    public ResponseEntity<CustoFixo> salvarCusto(@RequestBody CustoFixo novoCusto){
-        try {
-            CustoFixo custoSalvo = freteService.salvarCustoFixo(novoCusto);
-            return  ResponseEntity.ok(custoSalvo);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @GetMapping("/preco")
-    private List<TabelaPreco> listarPrecos(){
-        return  freteService.listarPrecos();
-    }
-
-    @PostMapping("/preco")
-    public ResponseEntity<TabelaPreco> salvarPreco(@RequestBody TabelaPreco novoPreco){
-        try {
-            TabelaPreco precoSalvo = freteService.salvarPreco(novoPreco);
-            return  ResponseEntity.ok(precoSalvo);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
 }

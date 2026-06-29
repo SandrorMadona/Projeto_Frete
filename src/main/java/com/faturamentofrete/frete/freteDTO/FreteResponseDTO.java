@@ -16,8 +16,7 @@ public record FreteResponseDTO(
         List<TurnoRealizado> turnoRealizado,
         BigDecimal faturamento,
         BigDecimal gasto,
-        boolean isDobra,
-        boolean sdd
+        boolean isDobra
 ) {
         public FreteResponseDTO(Frete frete){
             this(
@@ -26,8 +25,7 @@ public record FreteResponseDTO(
                     frete.getTurnoRealizado(),
                     frete.getFaturamento(),
                     frete.getGasto(),
-                    frete.isDobra(),
-                    frete.isSdd()
+                    frete.isDobra()
             );
 
         }

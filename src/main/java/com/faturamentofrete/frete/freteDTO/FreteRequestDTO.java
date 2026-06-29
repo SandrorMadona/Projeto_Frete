@@ -12,9 +12,7 @@ public record FreteRequestDTO(
         LocalDate dataServico,
         @NotEmpty
         List<TurnoRealizado> turnoRealizado,
-        BigDecimal faturamento,
-        BigDecimal gasto,
-        boolean sdd
+        BigDecimal gasto
         //nao em boolean isDobra no DTO porque se o front enviar isDobra como false sendo que tem mais de dois itens na list<turno>, isso cria um problema
 ) {
 
