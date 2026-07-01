@@ -1,25 +1,22 @@
 // ... importações ...
 package com.faturamentofrete.frete.controller;
 
-import com.faturamentofrete.frete.entity.CustoFixo;
-import com.faturamentofrete.frete.entity.Frete;
-import com.faturamentofrete.frete.entity.TabelaPreco;
 import com.faturamentofrete.frete.freteDTO.FreteRequestDTO;
 import com.faturamentofrete.frete.freteDTO.FreteResponseDTO;
 import com.faturamentofrete.frete.service.FreteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/fretes")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class FreteController {
 
-    @Autowired
     private FreteService freteService;
 
     @GetMapping

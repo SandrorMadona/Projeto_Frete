@@ -3,7 +3,7 @@ package com.faturamentofrete.frete.controller;
 import com.faturamentofrete.frete.entity.TabelaPreco;
 import com.faturamentofrete.frete.service.FreteService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

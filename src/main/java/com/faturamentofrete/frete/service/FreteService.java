@@ -1,11 +1,9 @@
 package com.faturamentofrete.frete.service;
 
-import com.faturamentofrete.frete.entity.CustoFixo;
-import com.faturamentofrete.frete.entity.Frete;
-import com.faturamentofrete.frete.entity.TabelaPreco;
-import com.faturamentofrete.frete.entity.TurnoRealizado;
+import com.faturamentofrete.frete.entity.*;
 import com.faturamentofrete.frete.freteDTO.FreteRequestDTO;
 import com.faturamentofrete.frete.freteDTO.FreteResponseDTO;
+import com.faturamentofrete.frete.repository.CombustivelRepository;
 import com.faturamentofrete.frete.repository.CustoFixoRepository;
 import com.faturamentofrete.frete.repository.FreteRepository;
 import com.faturamentofrete.frete.repository.TabelaPrecoRepository;
@@ -25,6 +23,7 @@ public class FreteService {
     private final FreteRepository freteRepository;
     private final CustoFixoRepository custoFixoRepository;
     private final TabelaPrecoRepository tabelaPrecoRepository;
+    private final CombustivelRepository combustivelRepository;
 
     /**
      * Recupera todos os fretes salvos no sistema, aplicando uma ordenação customizada
@@ -139,4 +138,18 @@ public class FreteService {
         // Ajustado de findById() para findById(1L) para referenciar diretamente a linha única de preço.
         return tabelaPrecoRepository.findById(1L);
     }
+
+    public Combustivel salvaCombustivel(Combustivel novoCombustivel) { return combustivelRepository.save(novoCombustivel); }
+
+    public List<Combustivel> listaCombustivel() { return combustivelRepository.findAll(); }
+
+    public void deletaCombustivel(Long id){
+        // Verifica se o ID informado realmente existe no banco antes de tentar a exclusão.
+        if (!combustivelRepository.existsById(id)){
+            throw new RuntimeException("Combustivel não encontrado com id: " + id);
+        }
+        combustivelRepository.deleteById(id);
+    }
+
 }
+
